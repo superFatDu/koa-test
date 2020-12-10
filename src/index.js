@@ -1,19 +1,14 @@
-// const Koa = require('koa')
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import jsonutil from 'koa-json'
 import cors from '@koa/cors'
 import compose from 'koa-compose'
-const path = require('path')
-const helmet = require('koa-helmet')
-const statics = require('koa-static')
+import path from 'path'
+import helmet from 'koa-helmet'
+import statics from 'koa-static'
+import router from './routes/routes'
 
 const app = new Koa()
-
-const router = require('./routes/routes')
-
-// app.use(helmet())
-// app.use(statics(path.join(__dirname, '../public')))
 
 const middleWare = compose([
   koaBody(),
@@ -22,6 +17,7 @@ const middleWare = compose([
   jsonutil({ pretty: false, param: 'pretty' }),
   helmet()
 ])
+
 app.use(middleWare)
 app.use(router())
 

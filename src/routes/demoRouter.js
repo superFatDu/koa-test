@@ -1,8 +1,7 @@
-const Router = require('koa-router')
-const { a } = require('../api/DemoController.js')
-
+import Router from 'koa-router'
+import demoController from '../api/DemoController'
 const router = new Router()
 
-router.get('/demo', a)
+router.get('/demo', demoController.demo)
 
 export default router
